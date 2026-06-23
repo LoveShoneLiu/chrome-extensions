@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+        background: #f5f7f9;
+      }
+
+      .frame {
+        position: relative;
+        width: 1280px;
+        height: 800px;
+        overflow: hidden;
+        background: #f5f7f9;
+      }
+
+      .backdrop,
+      .contain,
+      .cover {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .backdrop {
+        object-fit: cover;
+        filter: blur(18px);
+        opacity: 0.24;
+        transform: scale(1.08);
+      }
+
+      .contain {
+        object-fit: contain;
+        padding: 18px;
+      }
+
+      .cover {
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      body[data-shot="1"] #shot2,
+      body[data-shot="2"] #shot1 {
+        display: none;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const shot = new URLSearchParams(window.location.search).get("shot") || "1";
+        document.body.dataset.shot = shot;
+      });
+    </script>
+  </head>
+  <body>
+    <div id="shot1" class="frame">
+      <img class="backdrop" src="../1.png" alt="">
+      <img class="contain" src="../1.png" alt="">
+    </div>
+    <div id="shot2" class="frame">
+      <img class="cover" src="../2.png" alt="">
+    </div>
+  </body>
+</html>
